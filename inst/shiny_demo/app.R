@@ -1,13 +1,8 @@
 library(shiny)
 library(RSQLite)
 library(DTeditCn)
-options(DT.options = list(
-  searchHighlight = TRUE,
-  language = list(
-    info = '显示第_START_ 至 _END_ 项结果，共 _TOTAL_ 项',
-    search = '搜索:',
-    paginate = list(previous = '上页', `next` = '下页'),
-    lengthMenu = '显示 _MENU_ 项结果')))
+#设置为中文
+ setDTtoCn();
 
 ##### Load books data.frame as a SQLite database
 conn <- dbConnect(RSQLite::SQLite(), "books.sqlite")
