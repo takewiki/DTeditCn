@@ -393,8 +393,8 @@ dteditCn <- function(input, output, name, thedata,
 		shiny::modalDialog(title = title.edit,
 			shiny::div(shiny::textOutput(paste0(name, '_message')), style='color:red'),
 			fields,
-			footer = column(shiny::modalButton('Cancel'),
-							shiny::actionButton(paste0(name, '_update'), 'Save'),
+			footer = column(shiny::modalButton('取消修改'),
+							shiny::actionButton(paste0(name, '_update'), '保存修改'),
 							width=12),
 			size = modal.size
 		)
