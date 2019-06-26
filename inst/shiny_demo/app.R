@@ -1,6 +1,6 @@
 library(shiny)
 library(RSQLite)
-library(DTedit)
+library(DTeditCn)
 
 ##### Load books data.frame as a SQLite database
 conn <- dbConnect(RSQLite::SQLite(), "books.sqlite")
@@ -60,31 +60,32 @@ books.delete.callback <- function(data, row) {
 ##### Create the Shiny server
 server <- function(input, output) {
 	books <- getBooks()
-	dtedit(input, output,
+	dteditCn(input, output,
 		   name = 'books',
 		   thedata = books,
 		   edit.cols = c('Title', 'Authors', 'Date', 'Publisher'),
-		   edit.label.cols = c('Book Title', 'Authors', 'Publication Date', 'Publisher'),
+		   edit.label.cols = c('Book Title1', 'Authors2', 'Publication Date3', 'Publisher4'),
 		   input.types = c(Title='textAreaInput'),
 		   input.choices = list(Authors = unique(unlist(books$Authors))),
-		   view.cols = names(books)[c(5,1,3)],
+		   view.cols = names(books)[1:3],
+		   label.add = '新增',
+		   label.copy = '复制',
+		   label.edit = '修改',
+		   label.delete = '删除',
+		   title.add = '新增界面',
+		   title.edit = '修改界面',
+		   title.delete = '删除界面',
 		   callback.update = books.update.callback,
 		   callback.insert = books.insert.callback,
 		   callback.delete = books.delete.callback)
 
-	names <- data.frame(Name=character(), Email=character(), Date=numeric(),
-						Type = factor(levels=c('Admin', 'User')),
-						stringsAsFactors=FALSE)
-	names$Date <- as.Date(names$Date, origin='1970-01-01')
-	namesdt <- dtedit(input, output, name = 'names', names)
+
 }
 
 ##### Create the shiny UI
 ui <- fluidPage(
 	h3('Books'),
-	uiOutput('books'),
-	hr(), h3('Email Addresses'),
-	uiOutput('names')
+	uiOutput('books')
 )
 
 shinyApp(ui = ui, server = server)

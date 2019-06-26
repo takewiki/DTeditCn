@@ -1,6 +1,6 @@
 #' Editable DataTables for shiny apps
 #'
-#' @name DTedit-package
+#' @name DTeditCn-package
 #' @docType package
 #' @title Editable DataTables for shiny apps
 #' @author \email{jason@@bryer.org}

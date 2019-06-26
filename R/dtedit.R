@@ -81,7 +81,7 @@
 #' @param datatable.options options passed to \code{\link{DT::renderDataTable}}.
 #'        See \link{https://rstudio.github.io/DT/options.html} for more information.
 #' @export
-dtedit <- function(input, output, name, thedata,
+dteditCn <- function(input, output, name, thedata,
 				   view.cols = names(thedata),
 				   edit.cols = names(thedata),
 				   edit.label.cols = edit.cols,
@@ -312,8 +312,8 @@ dtedit <- function(input, output, name, thedata,
 		shiny::modalDialog(title = title.add,
 					shiny::div(shiny::textOutput(paste0(name, '_message')), style='color:red'),
 					fields,
-					footer = shiny::column(shiny::modalButton('Cancel'),
-									shiny::actionButton(paste0(name, '_insert'), 'Save'),
+					footer = shiny::column(shiny::modalButton('取消'),
+									shiny::actionButton(paste0(name, '_insert'), '保存'),
 									width=12),
 					size = modal.size
 		)
@@ -437,10 +437,10 @@ dtedit <- function(input, output, name, thedata,
 			fields[[i]] <- div(paste0(i, ' = ', result$thedata[row,i]))
 		}
 		shiny::modalDialog(title = title.delete,
-					shiny::p('Are you sure you want to delete this record?'),
+					shiny::p('确认删除此条记录?'),
 					fields,
-					footer = shiny::column(modalButton('Cancel'),
-									shiny::actionButton(paste0(name, '_delete'), 'Delete'),
+					footer = shiny::column(modalButton('取消'),
+									shiny::actionButton(paste0(name, '_delete'), '删除'),
 									width=12),
 					size = modal.size
 		)
