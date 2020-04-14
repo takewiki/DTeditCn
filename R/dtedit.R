@@ -115,7 +115,7 @@ dteditCn <- function(input, output, name, thedata,
 ) {
 	# Some basic parameter checking
 	if(!is.data.frame(thedata) | ncol(thedata) < 1) {
-		stop('Must provide a data frame with at least one column.')
+		stop('数据集至少包含一列数据.')
 	} else if(length(edit.cols) != length(edit.label.cols)) {
 		stop('edit.cols and edit.label.cols must be the same length.')
 	} else if(!all(view.cols %in% names(thedata))) {
